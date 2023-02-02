@@ -27,24 +27,31 @@
   font-family: Bungee, sans-serif;
 }
 
-.new-tweet div.button-error {
-  display: flex;
-  flex-flow: row wrap;
-  align-items: center;
-}
-
 .new-tweet button {
   background-color: #4056A1;
   color: #FFFFFF;
   border: none;
 }
 
-.new-tweet p.error {
+.new-tweet div.toggle {
+  width: 100%;
+  display: none;
+}
+
+.new-tweet div.error {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  margin-bottom: 20px;
+  border-style: solid;
+  padding-left: 10px;
+}
+
+.new-tweet div.error p {
   margin-block: 0em;
-  margin-left: 20px;
+  padding: 10px;
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: 600;
-  display: none;
 }
 
 .red {

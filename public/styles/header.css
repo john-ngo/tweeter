@@ -6,4 +6,5 @@ body > header {
   flex-direction: column;
   background-color: orange;
   background-image: url("https://www.transparenttextures.com/patterns/black-mamba.png");
+  margin-bottom: 30px;
 }

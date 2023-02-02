@@ -65,10 +65,10 @@ $(document).ready(() => {
     event.preventDefault();
     const data = $(this).serialize();
     
-    $("p.error").slideUp("slow", function() {
+    $("div.toggle").slideUp(400, function() {    
       if (decodeURI(data.split("=")[1]).length > 140) {
-        $("p.error").html("Tweet too long");
-        $("p.error").slideDown("slow");
+        $("div.error p").html("Tweet too long!");
+        $("div.toggle").slideDown();
       } else if (data.split("=")[1]) {
         $.ajax({
           method: "POST",
@@ -82,8 +82,8 @@ $(document).ready(() => {
           }
         });
       } else {
-        $("p.error").html("Empty tweet");
-        $("p.error").slideDown("slow");
+        $("div.error p").html("Empty tweet!");
+        $("div.toggle").slideDown();
       }
     });
   });
