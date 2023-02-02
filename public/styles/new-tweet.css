@@ -1,0 +1,38 @@
+.new-tweet {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.new-tweet form {
+  width: 100%;
+}
+
+.new-tweet label {
+  font-weight: 600;
+}
+
+#tweet-text {
+  width: 100%;
+  resize: none;
+  outline: none;
+  border-width: 0 0 4px;
+  background-color: #f4f1ec;
+}
+
+.new-tweet div {
+  display: flex;
+  justify-content: space-between;
+  flex-flow: row wrap;
+  font-family: Bungee, sans-serif;
+}
+
+.new-tweet button {
+  background-color: #4056A1;
+  color: #FFFFFF;
+  border: none;
+}
+
+.red {
+  color: red;
+}

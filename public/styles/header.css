@@ -1,0 +1,9 @@
+body > header {
+  padding-top: 130px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: orange;
+  background-image: url("https://www.transparenttextures.com/patterns/black-mamba.png");
+}
