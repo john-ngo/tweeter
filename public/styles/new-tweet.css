@@ -20,17 +20,31 @@
   background-color: #f4f1ec;
 }
 
-.new-tweet div {
+.new-tweet div.button-counter {
   display: flex;
   justify-content: space-between;
   flex-flow: row wrap;
   font-family: Bungee, sans-serif;
 }
 
+.new-tweet div.button-error {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+
 .new-tweet button {
   background-color: #4056A1;
   color: #FFFFFF;
   border: none;
+}
+
+.new-tweet p.error {
+  margin-block: 0em;
+  margin-left: 20px;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 600;
+  display: none;
 }
 
 .red {

@@ -4,6 +4,14 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
+// Escape function to prevent XSS
+const escape = function(str) {
+  let div = document.createElement("div");
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+};
+
+// Create a tweet
 const createTweetElement = function(tweet) {
   const $tweet = $(
     `<article class="tweet">
@@ -14,7 +22,7 @@ const createTweetElement = function(tweet) {
         </div>
         <p class="handle">${tweet.user.handle}</p>
       </header>
-      <p class="tweet-text">${tweet.content.text}</p>
+      <p class="tweet-text">${escape(tweet.content.text)}</p>
       <hr>
       <footer>
         <p>${timeago.format(tweet.created_at)}</p>
@@ -30,6 +38,7 @@ const createTweetElement = function(tweet) {
   return $tweet;
 };
 
+// Render tweets
 const renderTweets = function(tweets) {
   tweets.forEach(tweet => {
     const $tweet = createTweetElement(tweet);
@@ -37,11 +46,13 @@ const renderTweets = function(tweets) {
   });
 };
 
+// Load all tweets
 const loadTweets = function(callback) {
   $.get("/tweets")
     .then((tweets) => callback(tweets));
 }(renderTweets);
 
+// Load last tweet
 const loadLastTweet = function(callback) {
   $.get("/tweets")
     .then((tweets) => {
@@ -52,25 +63,28 @@ const loadLastTweet = function(callback) {
 $(document).ready(() => {
   $("#tweet-form").submit(function(event) {
     event.preventDefault();
-    
     const data = $(this).serialize();
-
-    if (decodeURI(data.split("=")[1]).length > 140) {
-      alert("Tweet too long");
-    } else if (data.split("=")[1]) {
-      $.ajax({
-        method: "POST",
-        url: "/tweets",
-        data: data,
-        statusCode: {
-          201: function() {
-            event.target.reset();
-            loadLastTweet(renderTweets);
+    
+    $("p.error").slideUp("slow", function() {
+      if (decodeURI(data.split("=")[1]).length > 140) {
+        $("p.error").html("Tweet too long");
+        $("p.error").slideDown("slow");
+      } else if (data.split("=")[1]) {
+        $.ajax({
+          method: "POST",
+          url: "/tweets",
+          data: data,
+          statusCode: {
+            201: function() {
+              event.target.reset();
+              loadLastTweet(renderTweets);
+            }
           }
-        }
-      });
-    } else {
-      alert("Empty tweet");
-    }
+        });
+      } else {
+        $("p.error").html("Empty tweet");
+        $("p.error").slideDown("slow");
+      }
+    });
   });
 });
