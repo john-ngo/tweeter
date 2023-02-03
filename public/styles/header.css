@@ -1,10 +1,20 @@
 body > header {
-  padding-top: 130px;
   width: 100%;
   display: flex;
   align-items: center;
   flex-direction: column;
   background-color: orange;
   background-image: url("https://www.transparenttextures.com/patterns/black-mamba.png");
-  margin-bottom: 30px;
+  padding-top: 6em;
+  margin-bottom: 1em;
+}
+
+@media only screen and (min-width: 1024px) {
+  body > header {
+    width: 35vw;
+    float: left;
+    margin: 8em 2em;
+    padding-top: 1em;
+    position: fixed;
+  }
 }
